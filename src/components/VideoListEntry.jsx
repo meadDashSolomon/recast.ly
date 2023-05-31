@@ -1,11 +1,11 @@
-var VideoListEntry = () => (
+var VideoListEntry = ({video}) => (
   <div className="video-list-entry media">
     <div className="media-left media-middle">
-      <img className="media-object" src="https://i.ytimg.com/vi/1w8Z0UOXVaY/default.jpg" alt="" />
+      <img className="media-object" src={video.snippet.thumbnails.default.url} alt="" />
     </div>
     <div className="media-body">
-      <div className="video-list-entry-title">Video Title</div>
-      <div className="video-list-entry-detail">Video Description</div>
+      <div className="video-list-entry-title">{video.snippet.title}</div>
+      <div className="video-list-entry-detail">{video.snippet.description}</div>
     </div>
   </div>
 );
@@ -19,3 +19,23 @@ VideoListEntry.propTypes = {
 // In the ES6 spec, files are "modules" and do not share a top-level scope
 // `var` declarations will only exist globally where explicitly defined
 export default VideoListEntry;
+
+
+{/* <div><h5><em>videoListEntry</em> charmander</h5></div>
+<div><h5><em>videoListEntry</em> view goes here</h5></div>
+<div><h5><em>videoListEntry</em> view goes here</h5></div>
+<div><h5><em>videoListEntry</em> view goes here</h5></div>
+<div><h5><em>videoListEntry</em> view goes here</h5></div> */}
+
+/*
+const VideoListEntry = (video) => {
+  return (
+    <div><{video}</div>
+
+
+
+  )
+}
+
+
+*/
