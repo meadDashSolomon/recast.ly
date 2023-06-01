@@ -2,35 +2,59 @@ import exampleVideoData from '../data/exampleVideoData.js'
 import VideoList from './VideoList.js'
 import VideoListEntry from './VideoListEntry.js'
 import VideoPlayer from './VideoPlayer.js'
-const {useState} = React;
+import searchYouTube from '../lib/searchYouTube.js'
+import Search from './Search.js'
+const {useState, useEffect} = React;
 
 var App = () => {
+
+  // useEffect(searchYouTube, [])
   // state to keep track of all the videos in video list
-  const [currentList, setCurrentList] = useState(exampleVideoData);
+  const [currentList, setCurrentList] = useState([]);
   // state to keep track of the curr video in the player
-  const [vidPlaying, setVidPlaying] = useState(exampleVideoData[0]);
+  const [vidPlaying, setVidPlaying] = useState({});
+
+  // edge case for searches that yield 0 results
+
+  useEffect(() => {
+  //this code will run immediately after initial render
+  let query = 'Java';
+  let cbFunction = function (data) {
+    console.log('logging data in success CB', data)
+    setVidPlaying(data[1])
+    setCurrentList(data);
+  };
+  searchYouTube(query, cbFunction)
+  }, []);
+
+if (currentList.length === 0 || vidPlaying.id === undefined) {
+  console.log('currList', currentList)
+  return (
+    <div>Loading, please wait!</div>
+  );
+}
 
   return (
   <div>
     <nav className="navbar">
       <div className="col-md-6 offset-md-3">
-        <div><h5><em>hello</em> view goes here</h5></div>
+        <Search
+        searchYouTube = {searchYouTube}
+        />
       </div>
     </nav>
     <div className="row">
       <div className="col-md-7">
         <VideoPlayer
-        video = {exampleVideoData[0]}
+        video = {vidPlaying}
         currentList = {currentList}
         setCurrentList = {setCurrentList}/>
       </div>
       <div className="col-md-5">
-        <div><h5><em>videoList</em></h5>
         <VideoList
-        videos = {exampleVideoData}
+        videos = {currentList}
         vidPlaying = {vidPlaying}
         setVidPlaying = {setVidPlaying}/>
-        </div>
       </div>
     </div>
   </div>

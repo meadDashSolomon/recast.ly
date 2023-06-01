@@ -1,20 +1,13 @@
 import VideoPlayer from './VideoPlayer.js'
 
 var VideoListEntry = ({video, vidPlaying, setVidPlaying}) => {
-console.log('setvidooo', {setVidPlaying})
   return (
   <div className="video-list-entry media">
     <div className="media-left media-middle">
       <img className="media-object" src={video.snippet.thumbnails.default.url} alt="" />
     </div>
     <div className="media-body">
-      <div className="video-list-entry-title" onClick={function(event) {
-  setVidPlaying(function(event) {
-    console.log('EVENTTTT:', event);
-    VideoPlayer(event);
-  }
-      )
-      }}>{video.snippet.title}</div>
+      <div className="video-list-entry-title" onClick={(event) => setVidPlaying(video)}>{video.snippet.title}</div>
       <div className="video-list-entry-detail">{video.snippet.description}</div>
     </div>
   </div>
