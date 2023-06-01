@@ -1,11 +1,15 @@
 import VideoListEntry from './VideoListEntry.js'
 
-const VideoList = ({videos}) => {
+const VideoList = ({videos, vidPlaying setVidPlaying}) => {
   console.log('VIDDDeoZZZ', videos);
   return (
       <div className="video-list">
     {videos.map((video, index) => (
-  <VideoListEntry video = {video} key = {index} />
+  <VideoListEntry
+  video = {video}
+  vidPlaying = {vidPlaying}
+  setVidPlaying = {setVidPlaying}
+  key = {index} />
      ))}
   </div>
   )
