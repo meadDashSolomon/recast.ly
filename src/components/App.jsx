@@ -20,7 +20,6 @@ var App = () => {
   //this code will run immediately after initial render
   let query = 'Java';
   let cbFunction = function (data) {
-    console.log('logging data in success CB', data)
     setVidPlaying(data[1])
     setCurrentList(data);
   };
@@ -28,7 +27,6 @@ var App = () => {
   }, []);
 
 if (currentList.length === 0 || vidPlaying.id === undefined) {
-  console.log('currList', currentList)
   return (
     <div>Loading, please wait!</div>
   );
@@ -40,6 +38,8 @@ if (currentList.length === 0 || vidPlaying.id === undefined) {
       <div className="col-md-6 offset-md-3">
         <Search
         searchYouTube = {searchYouTube}
+        setCurrentList = {setCurrentList}
+        setVidPlaying = {setVidPlaying}
         />
       </div>
     </nav>

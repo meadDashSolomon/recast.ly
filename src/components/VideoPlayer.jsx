@@ -1,5 +1,4 @@
 var VideoPlayer = ({video}) => {
-  console.log('logging video in videoplayer', video)
   return (
   <div className="video-player">
     <div className="embed-responsive embed-responsive-16by9">
